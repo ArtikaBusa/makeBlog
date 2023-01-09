@@ -480,6 +480,12 @@ header .navbar {
 	border-bottom: 1px solid #eee;
 }
 
+.blog-posts .down-content .short-details-show {
+	padding: 25px 0px;
+	margin: 25px 0px;
+	border-top: 1px solid #eee;
+}
+
 .blog-posts .down-content ul.post-share {
 	text-align: right;
 }
@@ -1091,3 +1097,33 @@ footer p a:hover {
 		margin-top: 60px;
 	}
 }
+.pagination {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: 0px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.pagination li.active a{
+  float: left;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  background-color: #f48840;
+  color: white;
+  border: 1px solid #f48840;
+}
+.pagination li a{
+  color: black;
+  float: left;
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.pagination li:hover:not(.active) a {border: 1px solid #f48840;}

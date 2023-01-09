@@ -48,7 +48,8 @@ gem 'devise'
 gem 'sass-rails'
 gem 'sassc'
 gem 'activeadmin_quill_editor'
-
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

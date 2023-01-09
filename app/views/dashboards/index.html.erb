@@ -1,15 +1,15 @@
 <div class="main-banner header-text">
   <div class="container-fluid">
     <div class="owl-banner owl-carousel">
-      <% @blogs.each do |blog| %>
+      <% @blogs_index.each do |blog| %>
         <div class="item">
-          <%= image_tag url_for(blog.images.first), alt: "", size: "582x503"%>
+          <%= image_tag blog.image.present? ? url_for(blog.image) : "vendor/banner-item.jpg", alt: "", size: "382x200"%>
           <div class="item-content">
             <div class="main-content">
               <div class="meta-category">
                 <span><%= blog.category.titleize %></span>
               </div>
-              <a href="post-details.html"><h4><%= blog.title %></h4></a>
+              <%= link_to blog_display_path(id: blog.id) do %><h4><%= blog.title %></h4><% end %>
               <ul class="post-info">
                 <li><a href="#">Admin</a></li>
                 <li><a href="#"><%= blog.created_at.strftime("%b %d, %Y") %></a></li>
@@ -18,10 +18,35 @@
           </div>
         </div>
       <% end %>
-
     </div>
   </div>
 </div>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="owl-banner owl-carousel">
+        <% @blogs_index.each do |blog| %>
+          <div class="item">
+            <%= image_tag blog.image.present? ? url_for(blog.image) : "vendor/banner-item.jpg", alt: "", size: "382x200"%>
+            <div class="item-content">
+              <div class="main-content">
+                <div class="meta-category">
+                  <span><%= blog.category.titleize %></span>
+                </div>
+                <%= link_to blog_display_path(id: blog.id) do %><h4><%= blog.title %></h4><% end %>
+                <ul class="post-info">
+                  <li><a href="#">Admin</a></li>
+                  <li><a href="#"><%= blog.created_at.strftime("%b %d, %Y") %></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="blog-posts">
   <div class="container">
@@ -33,32 +58,28 @@
               <div class="col-lg-12">
                 <div class="blog-post">
                   <div class="blog-thumb">
-                    <%= image_tag url_for(blog.images.first), alt: ""%>
+                    <%= image_tag blog.image.present? ? url_for(blog.image) : "vendor/banner-item.jpg", alt: "", size: "730x322"%>
                   </div>
                   <div class="down-content">
                     <span><%= blog.category.titleize %></span>
-                    <a href="post-details.html"><h4><%= blog.title %></h4></a>
+                    <%= link_to blog_display_path(id: blog.id) do %><h4><%= blog.title %></h4><% end %>
                     <ul class="post-info">
                       <li><a href="#">Admin</a></li>
                       <li><a href="#"><%= blog.created_at.strftime("%b %d, %Y") %></a></li>
                     </ul>
                     <div class="short-details">
-                      <%= blog.content %>
+                      <%= truncate(strip_tags(blog.content.to_s), length: 350) %>
                     </div>
                     <div class="post-options">
                       <div class="row">
                         <div class="col-6">
                           <ul class="post-tags">
-                            <li><i class="fa fa-tags"></i></li>
-                            <li><a href="#">Beauty</a>,</li>
-                            <li><a href="#">Nature</a></li>
                           </ul>
                         </div>
                         <div class="col-6">
                           <ul class="post-share">
                             <li><i class="fa fa-share-alt"></i></li>
-                            <li><a href="#">Facebook</a>,</li>
-                            <li><a href="#"> Twitter</a></li>
+                            <li><%= link_to "Read More", blog_display_path(id: blog.id) %></li>
                           </ul>
                         </div>
                       </div>
@@ -66,9 +87,10 @@
                   </div>
                 </div>
               </div>
-
             <% end %>
+            <%= paginate @blogs %>
           </div>
+
         </div>
       </div>
       <div class="col-lg-4">

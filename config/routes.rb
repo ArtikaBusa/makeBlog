@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
+  get '/dashboards/:id', to: 'dashboards#show', as: :blog_display
   root "dashboards#index"
 end
